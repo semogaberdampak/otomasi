@@ -1,0 +1,11 @@
+# Data lokal per komputer (jangan ikut repo)
+pengaturan.json
+progres_automasi.json
+automasi.log
+debug_*.png
+
+# Hasil build / cache
+__pycache__/
+*.pyc
+build/
+dist/

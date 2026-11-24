@@ -10,6 +10,8 @@ import tkinter as tk
 from datetime import datetime
 from tkinter import ttk, messagebox, filedialog
 import pyautogui
+from versi import __versi__
+from pembaruan import cek_versi_terbaru
 
 # Konversi nota A4 -> kertas thermal (tab Bulk Print Thermal).
 try:
@@ -392,7 +394,7 @@ def muat_pengaturan():
 class AutoJasperApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Aplikasi Automasi Save PDF Jasper")
+        self.root.title(f"Aplikasi Automasi Save PDF Jasper v{__versi__}")
         self.root.geometry("540x700")
         self.root.resizable(False, False)
 
@@ -430,6 +432,18 @@ class AutoJasperApp:
         self.create_widgets()
         self.perbarui_tombol_resume()
         self.root.after(100, self._proses_ui_queue)
+
+        # Catat versi, lalu cek pembaruan di latar belakang (aman bila offline)
+        self.log(f"Aplikasi versi {__versi__} dimulai")
+        threading.Thread(target=self._cek_pembaruan, daemon=True).start()
+
+    def _cek_pembaruan(self):
+        tag, ada_update = cek_versi_terbaru()
+        if ada_update:
+            self.log(
+                f"Tersedia versi baru {tag}. Tutup aplikasi lalu jalankan "
+                "PASANG_atau_PERBARUI.bat untuk memperbarui."
+            )
 
     def create_widgets(self):
         # Tab: automasi Jasper (lama) dan Bulk Print Thermal (baru)
