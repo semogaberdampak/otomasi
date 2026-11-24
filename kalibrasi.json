@@ -1,0 +1,10 @@
+{
+  "jumlah_tab_per_baris": 8,
+  "jumlah_kolom": 8,
+  "indeks_kolom_tanggal": 1,
+  "indeks_kolom_transaksi": 0,
+  "jeda_baca": 0.35,
+  "jeda_per_tab": 0.25,
+  "sumber_no_file": "asli",
+  "_catatan": "Hasil diagnosa uji_kemampuan.py. Kolom0=No.Transaksi, Kolom1=Tanggal (dd-mm-yyyy), 8x TAB = turun 1 baris."
+}
